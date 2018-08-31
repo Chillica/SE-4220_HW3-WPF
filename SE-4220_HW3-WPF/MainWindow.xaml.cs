@@ -26,6 +26,8 @@ namespace SE_4220_HW3_WPF
         public MainWindow()
         {
             InitializeComponent();
+
+            // Adjacency List for the buttons
             matrix[btn00] = new List<Button> { btn01, btn10 };
             matrix[btn01] = new List<Button> { btn00, btn11, btn02 };
             matrix[btn02] = new List<Button> { btn01, btn12, btn03 };
@@ -51,56 +53,26 @@ namespace SE_4220_HW3_WPF
             matrix[btn42] = new List<Button> { btn41, btn32, btn43 };
             matrix[btn43] = new List<Button> { btn42, btn33, btn44 };
             matrix[btn44] = new List<Button> { btn43, btn34 };
-            /*
-            matrix[btn00] = new List<Button> { btn01, btn11, btn10 };
-            matrix[btn01] = new List<Button> { btn00, btn10, btn11, btn12, btn02 };
-            matrix[btn02] = new List<Button> { btn01, btn13, btn11, btn12, btn03 };
-            matrix[btn03] = new List<Button> { btn04, btn14, btn13, btn12, btn02 };
-            matrix[btn04] = new List<Button> { btn03, btn13, btn14 };
-            matrix[btn10] = new List<Button> { btn00, btn01, btn11, btn21, btn20 };
-            matrix[btn11] = new List<Button> { btn00, btn01, btn02, btn12, btn22, btn21, btn20, btn10 };
-            matrix[btn12] = new List<Button> { btn01, btn11, btn21, btn22, btn23, btn13, btn03, btn02 };
-            matrix[btn13] = new List<Button> { btn02, btn12, btn22, btn23, btn24, btn14, btn04, btn03 };
-            matrix[btn14] = new List<Button> { btn04, btn03, btn13, btn23, btn24 };
-            matrix[btn20] = new List<Button> { btn10, btn11, btn21,btn21, btn31, btn30 };
-            matrix[btn21] = new List<Button> { btn10, btn11, btn12, btn22, btn32, btn31, btn30, btn20 };
-            matrix[btn22] = new List<Button> { btn11, btn12, btn13, btn23, btn33, btn32, btn31, btn21 };
-            matrix[btn23] = new List<Button> { btn12, btn13, btn14, btn24, btn34, btn33, btn32, btn22 };
-            matrix[btn24] = new List<Button> { btn14, btn13, btn23, btn33, btn34 };
-            matrix[btn30] = new List<Button> { btn20, btn21, btn31, btn41, btn40 };
-            matrix[btn31] = new List<Button> { btn20, btn21, btn22, btn32 };
-            matrix[btn32] = new List<Button> { btn21, btn22, btn23, btn33, btn43, btn42, btn41, btn31 };
-            matrix[btn33] = new List<Button> { btn22, btn23, btn24, btn34, btn44, btn43, btn42, btn32 };
-            matrix[btn34] = new List<Button> { btn24, btn23, btn33, btn43, btn44 };
-            matrix[btn40] = new List<Button> { btn30, btn31, btn41 };
-            matrix[btn41] = new List<Button> { btn40, btn30, btn31, btn32, btn42 };
-            matrix[btn42] = new List<Button> { btn41, btn31, btn32, btn33, btn43 };
-            matrix[btn43] = new List<Button> { btn42, btn32, btn33, btn34, btn44 };
-            matrix[btn44] = new List<Button> { btn42, btn33, btn34 };
-             */
         }
 
+        // Button click event for the game buttons
         private void btn_Click(object sender, RoutedEventArgs e)
         {
             Button btn = e.OriginalSource as Button;
 
-            foreach(KeyValuePair<Button,List<Button>> key in matrix)
+            foreach(KeyValuePair<Button,List<Button>> button in matrix)
             {
-                if (btn.Name == key.Key.Name)
+                if (btn.Name == button.Key.Name)
                 {
-                    btn_toggle(key);
+                    toggle(button.Key);
+                    for (int i = 0; i < button.Value.Count; i++)
+                        toggle(button.Value.ElementAt(i));
                     return;
                 }
             }
         }
 
-        private void btn_toggle(KeyValuePair<Button, List<Button>> button)
-        {
-            toggle(button.Key);
-            for (int i = 0; i < button.Value.Count; i++)
-                toggle(button.Value.ElementAt(i));
-        }
-
+        // Toggles the game buttons
         private void toggle(Button button)
         {
             if (button.Background == System.Windows.Media.Brushes.White)
@@ -109,6 +81,7 @@ namespace SE_4220_HW3_WPF
                 button.Background = System.Windows.Media.Brushes.White;
         }
 
+        // Resets the game to a blank canvas
         private void reset(object sender, RoutedEventArgs e)
         {
             foreach (KeyValuePair<Button, List<Button>> key in matrix)
@@ -117,6 +90,39 @@ namespace SE_4220_HW3_WPF
                 for (int i = 0; i < key.Value.Count; i++)
                     key.Value.ElementAt(i).Background = System.Windows.Media.Brushes.White;
             }
+        }
+
+        private void addShape(object sender, RoutedEventArgs e)
+        {
+            byte[] array = new byte[3];
+            Random r = new Random();
+            r.NextBytes(array); //for ints
+
+            Ellipse ellipse = new Ellipse();
+            SolidColorBrush colorBrush = new SolidColorBrush();
+            colorBrush.Color = Color.FromArgb(array[0], array[1], array[2], 0);
+            if (colorBrush == System.Windows.Media.Brushes.White)
+                colorBrush = System.Windows.Media.Brushes.Black;
+            ellipse.Fill = colorBrush;
+            ellipse.Height = r.Next(0, 100);
+            ellipse.Width = r.Next(0, 100);
+            shapePanel.Children.Add(ellipse);
+        }
+
+        private void imgDockLeft(object sender, RoutedEventArgs e)
+        {
+            Thickness margin = imgDock.Margin;
+            margin.Right += 10;
+            margin.Left -= 10;
+            imgDock.Margin = margin;
+        }
+
+        private void imgDockRight(object sender, RoutedEventArgs e)
+        {
+            Thickness margin = imgDock.Margin;
+            margin.Left += 10;
+            margin.Right -= 10;
+            imgDock.Margin = margin;
         }
     }
 }
