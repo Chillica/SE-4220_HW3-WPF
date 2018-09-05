@@ -22,6 +22,7 @@ namespace SE_4220_HW3_WPF
     public partial class MainWindow : Window
     {
         private Dictionary<Button, List<Button>> matrix = new Dictionary<Button, List<Button>>();
+        private int count = 0;
 
         public MainWindow()
         {
@@ -59,8 +60,10 @@ namespace SE_4220_HW3_WPF
         private void btn_Click(object sender, RoutedEventArgs e)
         {
             Button btn = e.OriginalSource as Button;
+            count += 1;
+            Count.Text = count.ToString();
 
-            foreach(KeyValuePair<Button,List<Button>> button in matrix)
+            foreach (KeyValuePair<Button,List<Button>> button in matrix)
             {
                 if (btn.Name == button.Key.Name)
                 {
@@ -84,6 +87,8 @@ namespace SE_4220_HW3_WPF
         // Resets the game to a blank canvas
         private void reset(object sender, RoutedEventArgs e)
         {
+            int val = 0;
+            Count.Text = val.ToString();
             foreach (KeyValuePair<Button, List<Button>> key in matrix)
             {
                 key.Key.Background = System.Windows.Media.Brushes.White;

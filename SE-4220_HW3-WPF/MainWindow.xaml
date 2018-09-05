@@ -11,86 +11,143 @@
     <Grid>
         <TabControl Grid.ColumnSpan="5">
             <TabItem Header="Game">
-                <Grid Button.Click="btn_Click">
+                <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*" />
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="7*" />
                     </Grid.RowDefinitions>
-                    <Button x:Name="btn00"
-                            Grid.Column="0" Background="White"></Button>
-                    <Button x:Name="btn01"
-                            Grid.Column="1"
-                            Background="White"></Button>
-                    <Button x:Name="btn02"
-                            Grid.Column="2"
-                            Background="White"></Button>
-                    <Button x:Name="btn03"
-                            Grid.Column="3"
-                            Background="White"></Button>
-                    <Button x:Name="btn04"
-                            Grid.Column="4"
-                            Background="White"></Button>
-                    <Button x:Name="btn10" Grid.Column="0"
-                            Grid.Row="1" Background="White"></Button>
-                    <Button x:Name="btn11" Grid.Column="1"
-                            Grid.Row="1" Background="White"></Button>
-                    <Button x:Name="btn12" Grid.Column="2"
-                            Grid.Row="1" Background="White"></Button>
-                    <Button x:Name="btn13" Grid.Column="3"
-                            Grid.Row="1" Background="White"></Button>
-                    <Button x:Name="btn14" Grid.Column="4"
-                            Grid.Row="1" Background="White"></Button>
-                    <Button x:Name="btn20" Grid.Column="0"
-                            Grid.Row="2" Background="White"></Button>
-                    <Button x:Name="btn21" Grid.Column="1"
-                            Grid.Row="2" Background="White"></Button>
-                    <Button x:Name="btn22" Grid.Column="2"
-                            Grid.Row="2" Background="White"></Button>
-                    <Button x:Name="btn23" Grid.Column="3"
-                            Grid.Row="2" Background="White"></Button>
-                    <Button x:Name="btn24" Grid.Column="4"
-                            Grid.Row="2" Background="White"></Button>
-                    <Button x:Name="btn30" Grid.Column="0"
-                            Grid.Row="3" Background="White"></Button>
-                    <Button x:Name="btn31" Grid.Column="1"
-                            Grid.Row="3" Background="White"></Button>
-                    <Button x:Name="btn32" Grid.Column="2"
-                            Grid.Row="3" Background="White"></Button>
-                    <Button x:Name="btn33" Grid.Column="3"
-                            Grid.Row="3" Background="White"></Button>
-                    <Button x:Name="btn34" Grid.Column="4"
-                            Grid.Row="3" Background="White"></Button>
-                    <Button x:Name="btn40" Grid.Column="0"
-                            Grid.Row="4" Background="White"></Button>
-                    <Button x:Name="btn41" Grid.Column="1"
-                            Grid.Row="4" Background="White"></Button>
-                    <Button x:Name="btn42" Grid.Column="2"
-                            Grid.Row="4" Background="White"></Button>
-                    <Button x:Name="btn43" Grid.Column="3"
-                            Grid.Row="4" Background="White"></Button>
-                    <Button x:Name="btn44" Grid.Column="4"
-                            Grid.Row="4" Background="White"></Button>
+                    <Button Click="reset"
+                            Foreground="White"
+                            Background="ForestGreen"
+                            FontSize="30px"
+                            Grid.Column="0"
+                            VerticalContentAlignment="Center">Reset</Button>
+                    <TextBlock x:Name="Count"
+                               Foreground="Blue"
+                               FontSize="30px"
+                               TextAlignment="Center"
+                               Grid.Column="1">0</TextBlock>
+                    <Grid Grid.Row="1"
+                          Grid.ColumnSpan="2"
+                          Button.Click="btn_Click">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <Button x:Name="btn00"
+                                Grid.Column="0"
+                                Background="White"></Button>
+                        <Button x:Name="btn01"
+                                Grid.Column="1"
+                                Background="White"></Button>
+                        <Button x:Name="btn02"
+                                Grid.Column="2"
+                                Background="White"></Button>
+                        <Button x:Name="btn03"
+                                Grid.Column="3"
+                                Background="White"></Button>
+                        <Button x:Name="btn04"
+                                Grid.Column="4"
+                                Background="White"></Button>
+                        <Button x:Name="btn10"
+                                Grid.Column="0"
+                                Grid.Row="1"
+                                Background="White"></Button>
+                        <Button x:Name="btn11"
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                Background="White"></Button>
+                        <Button x:Name="btn12"
+                                Grid.Column="2"
+                                Grid.Row="1"
+                                Background="White"></Button>
+                        <Button x:Name="btn13"
+                                Grid.Column="3"
+                                Grid.Row="1"
+                                Background="White"></Button>
+                        <Button x:Name="btn14"
+                                Grid.Column="4"
+                                Grid.Row="1"
+                                Background="White"></Button>
+                        <Button x:Name="btn20"
+                                Grid.Column="0"
+                                Grid.Row="2"
+                                Background="White"></Button>
+                        <Button x:Name="btn21"
+                                Grid.Column="1"
+                                Grid.Row="2"
+                                Background="White"></Button>
+                        <Button x:Name="btn22"
+                                Grid.Column="2"
+                                Grid.Row="2"
+                                Background="White"></Button>
+                        <Button x:Name="btn23"
+                                Grid.Column="3"
+                                Grid.Row="2"
+                                Background="White"></Button>
+                        <Button x:Name="btn24"
+                                Grid.Column="4"
+                                Grid.Row="2"
+                                Background="White"></Button>
+                        <Button x:Name="btn30"
+                                Grid.Column="0"
+                                Grid.Row="3"
+                                Background="White"></Button>
+                        <Button x:Name="btn31"
+                                Grid.Column="1"
+                                Grid.Row="3"
+                                Background="White"></Button>
+                        <Button x:Name="btn32"
+                                Grid.Column="2"
+                                Grid.Row="3"
+                                Background="White"></Button>
+                        <Button x:Name="btn33"
+                                Grid.Column="3"
+                                Grid.Row="3"
+                                Background="White"></Button>
+                        <Button x:Name="btn34"
+                                Grid.Column="4"
+                                Grid.Row="3"
+                                Background="White"></Button>
+                        <Button x:Name="btn40"
+                                Grid.Column="0"
+                                Grid.Row="4"
+                                Background="White"></Button>
+                        <Button x:Name="btn41"
+                                Grid.Column="1"
+                                Grid.Row="4"
+                                Background="White"></Button>
+                        <Button x:Name="btn42"
+                                Grid.Column="2"
+                                Grid.Row="4"
+                                Background="White"></Button>
+                        <Button x:Name="btn43"
+                                Grid.Column="3"
+                                Grid.Row="4"
+                                Background="White"></Button>
+                        <Button x:Name="btn44"
+                                Grid.Column="4"
+                                Grid.Row="4"
+                                Background="White"></Button>
+                    </Grid>
                 </Grid>
             </TabItem>
             <TabItem Header="WrapPanel">
                 <WrapPanel x:Name="shapePanel">
-                    <Button Click="reset"
-                            Foreground="White"
-                            Background="ForestGreen"
-                            MaxHeight="30"
-                            FontSize="10px"
-                            Margin="10"
-                            VerticalAlignment="Top">Reset Game</Button>
                     <Button Click="addShape"
                             Foreground="White"
                             Background="purple"
@@ -102,9 +159,14 @@
             </TabItem>
             <TabItem Header="DockPanel">
                 <DockPanel>
-                    <Button x:Name="leftDock" DockPanel.Dock="Left" Click="imgDockLeft">Left</Button>
-                    <Button x:Name="rightDock" DockPanel.Dock="Right" Click="imgDockRight">Right</Button>
-                    <Image x:Name="imgDock" Source="images/image1.jpg" />
+                    <Button x:Name="leftDock"
+                            DockPanel.Dock="Left"
+                            Click="imgDockLeft">Left</Button>
+                    <Button x:Name="rightDock"
+                            DockPanel.Dock="Right"
+                            Click="imgDockRight">Right</Button>
+                    <Image x:Name="imgDock"
+                           Source="images/image1.jpg" />
                 </DockPanel>
             </TabItem>
         </TabControl>
